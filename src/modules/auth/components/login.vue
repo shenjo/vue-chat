@@ -1,0 +1,87 @@
+<template>
+    <div class="login_container">
+        <!--<NavHeader></NavHeader>-->
+        <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="username" prop="username">
+                <el-input type="text" v-model="loginForm.username" auto-complete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="password" prop="password">
+                <el-input type="password" v-model="loginForm.password" auto-complete="off"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="submitForm('loginForm')">submit</el-button>
+                <el-button @click="resetForm('loginForm')">reset</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+</template>
+
+<script>
+  import NavHeader from '../../core/components/main-header';
+  export default {
+    components: { NavHeader },
+    data () {
+      const validateUsername = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('please input username'));
+        } else {
+          if (this.loginForm.password !== '') {
+            this.$refs.loginForm.validateField('password');
+          }
+          callback();
+        }
+      };
+      const validatePassword = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('please input your password'));
+        } else {
+          callback();
+        }
+      };
+      return {
+        loginForm: {
+          username: '',
+          password: ''
+        },
+        rules: {
+          username: [
+            { validator: validateUsername, trigger: 'blur' }
+          ],
+          password: [
+            { validator: validatePassword, trigger: 'blur' }
+          ]
+        }
+      };
+    },
+    methods: {
+      submitForm (formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.$store.dispatch('userLogin', {}).then((userObj) => {
+              this.$store.commit('login', userObj);
+              this.$router.push('/');
+            });
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm (formName) {
+        this.$refs[formName].resetFields();
+      }
+    }
+  }
+</script>
+
+<style scoped>
+    .login_container {
+        position: fixed;
+        left: 50%;
+        width: 500px;
+        top: 50%;
+        margin-left: -250px;
+    }
+
+
+</style>
