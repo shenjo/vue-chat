@@ -1,11 +1,6 @@
 <template>
     <div class="headerWrapper">
-        <header class="header" ref="header">
-            <div class="container">
-                <h1>Vue demo</h1>
-                <el-button v-if="isAuthed" @click="userLogout()">logout</el-button>
-            </div>
-        </header>
+        <nav-header></nav-header>
         <el-row type="flex" class="row-bg">
             <el-col :span="4" v-if="isAuthed">
                 <div v-show="leftNavShow">
@@ -33,19 +28,15 @@
 </template>
 
 <script>
+  import NavHeader from './main-header'
   export default {
+    components: { NavHeader },
     computed: {
       leftNavShow () {
         return this.$store.state.core.showLeftNav
       },
       isAuthed () {
         return this.$store.state.auth.authed
-      }
-    },
-    methods: {
-      userLogout () {
-        this.$store.dispatch('userLogout');
-        this.$router.push('/login')
       }
     }
   }

@@ -1,12 +1,15 @@
 <template>
     <div class="headerWrapper header">
         <el-row type="flex" class="row-bg">
-            <el-col :span="6">bigs internal support</el-col>
+            <el-col :span="6">Vue chat demo</el-col>
             <el-col :span="12"></el-col>
             <el-col :span="6">
-                <div>
-                    <el-button>注册</el-button>
-                    <el-button type="primary">登录</el-button>
+                <div v-if="isAuthed">
+                    <el-button type="primary" @click="userLogout">logout</el-button>
+                </div>
+                <div v-else>
+                    <el-button>register</el-button>
+                    <el-button>login</el-button>
                 </div>
             </el-col>
         </el-row>
@@ -14,9 +17,20 @@
 </template>
 
 <script>
-    export default {
-      name: 'nav-header'
+  export default {
+    name: 'nav-header',
+    computed: {
+      isAuthed () {
+        return this.$store.state.auth.authed
+      }
+    },
+    methods: {
+      userLogout () {
+        this.$store.dispatch('userLogout');
+        this.$router.push('/login')
+      }
     }
+  }
 </script>
 
 <style scoped>

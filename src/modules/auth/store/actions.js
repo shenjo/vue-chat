@@ -15,7 +15,7 @@ export default {
       setTimeout(function () {
         authCtrl.setCookie('session', 'asdasdasd');
         resolve({ username: 'JOEY SHEN', location: 'ZHA' });
-      }, 2000);
+      }, 500);
     });
   },
   userLogout ({ commit }) {
