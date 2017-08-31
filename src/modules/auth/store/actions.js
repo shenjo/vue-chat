@@ -1,16 +1,18 @@
 /**
  * Created by SHENJO on 8/25/2017.
  */
+import * as types from './mutation-types'
+
 import authCtrl from '../apis/auth.client.api'
 export default {
-  checkLogin ({ commit }) {
+  [types.CHECKLOGIN] ({ commit }) {
     let session = authCtrl.getCookie('session');
     if (session) {
-      commit('login');
+      commit(types.LOGIN);
     }
     return session;
   },
-  userLogin ({ commit }, { username, password }) {
+  [types.USERLOGIN] ({ commit }, { username, password }) {
     return new Promise((resolve, reject) => {
       setTimeout(function () {
         authCtrl.setCookie('session', 'asdasdasd');
@@ -18,9 +20,9 @@ export default {
       }, 500);
     });
   },
-  userLogout ({ commit }) {
+  [types.USERLOGOUT] ({ commit }) {
     authCtrl.delCookie('session');
-    commit('logout');
+    commit(types.LOGOUT);
   }
 }
 

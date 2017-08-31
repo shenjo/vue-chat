@@ -2,18 +2,19 @@
  * Created by SHENJO on 8/25/2017.
  */
 import todoApi from '../apis/todo.client.api';
+import * as types from './mutation-types'
 
 export default {
-  addTodo ({ commit }, todo) {
+  [types.ADDTODO] ({ commit }, todo) {
     todoApi.addTodo(todo).then(() => {
-      commit('addTodo', todo);
+      commit(types.ADDTODO, todo);
     }).catch((err) => {
       console.log(err);
     });
   },
-  loadTodo ({ commit }) {
+  [types.LOADTODO] ({ commit }) {
     todoApi.loadTodoList().then((res) => {
-      commit('loadTodo', res.data);
+      commit(types.LOADTODO, res.data);
     }).catch((err) => {
       console.log(err);
     });

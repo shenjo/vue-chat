@@ -16,7 +16,7 @@ new Vue({
   router,
   store,
   created () {
-    this.$store.dispatch('checkLogin');
+    this.$store.dispatch('CHECKLOGIN');
     if (this.$store.state.auth.authed) {
       this.$router.push('/');
     }

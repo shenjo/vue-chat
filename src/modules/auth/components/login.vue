@@ -18,6 +18,7 @@
 
 <script>
   import NavHeader from '../../core/components/main-header';
+  import * as types from '../store/mutation-types';
   export default {
     components: { NavHeader },
     data () {
@@ -57,8 +58,8 @@
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$store.dispatch('userLogin', {}).then((userObj) => {
-              this.$store.commit('login', userObj);
+            this.$store.dispatch(types.CHECKLOGIN, {}).then((userObj) => {
+              this.$store.commit(types.USERLOGIN, userObj);
               this.$router.push('/');
             });
           } else {

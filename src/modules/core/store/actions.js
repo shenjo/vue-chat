@@ -1,9 +1,10 @@
 /**
  * Created by SHENJO on 8/25/2017.
  */
+import * as types from './mutation-types'
+
 export default {
-  increment (context) {
-    console.log('this is in action model. trigger by store.dispatch')
-    context.commit('increment')
+  [types.INCREMENT] ({ commit }) {
+    commit(types.INCREMENT)
   }
 }

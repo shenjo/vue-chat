@@ -17,6 +17,7 @@
 </template>
 
 <script>
+  import * as types from '../../auth/store/mutation-types'
   export default {
     name: 'nav-header',
     computed: {
@@ -26,7 +27,7 @@
     },
     methods: {
       userLogout () {
-        this.$store.dispatch('userLogout');
+        this.$store.dispatch(types.USERLOGOUT);
         this.$router.push('/login')
       }
     }
