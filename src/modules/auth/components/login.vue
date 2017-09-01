@@ -58,8 +58,7 @@
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$store.dispatch(types.CHECKLOGIN, {}).then((userObj) => {
-              this.$store.commit(types.USERLOGIN, userObj);
+            this.$store.dispatch(types.USERLOGIN, {}).then((userObj) => {
               this.$router.push('/');
             });
           } else {
@@ -80,7 +79,7 @@
         position: fixed;
         left: 50%;
         width: 500px;
-        top: 50%;
+        top: 35%;
         margin-left: -250px;
     }
 

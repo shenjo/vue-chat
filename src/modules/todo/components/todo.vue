@@ -18,6 +18,7 @@
 <script>
   import todoDetail from './todoDetail'
   import _ from 'lodash'
+  import * as types from '../store/mutation-types'
   export default {
     name: 'todoList',
     components: { todoDetail },
@@ -35,13 +36,13 @@
       addTodo () {
         const val = this.input;
         if (!_.isEmpty(val)) {
-          this.$store.dispatch('addTodo', { name: val });
+          this.$store.dispatch(types.ADDTODO, { name: val });
         }
         this.input = '';
       }
     },
     mounted () {
-      this.$store.dispatch('loadTodo');
+      this.$store.dispatch(types.LOADTODO);
     }
   }
 </script>

@@ -8,13 +8,14 @@ export default {
   [types.CHECKLOGIN] ({ commit }) {
     let session = authCtrl.getCookie('session');
     if (session) {
-      commit(types.LOGIN);
+      commit(types.LOGIN, {});
     }
     return session;
   },
-  [types.USERLOGIN] ({ commit }, { username, password }) {
+  [types.USERLOGIN] ({ commit }) {
     return new Promise((resolve, reject) => {
       setTimeout(function () {
+        commit(types.LOGIN, {});
         authCtrl.setCookie('session', 'asdasdasd');
         resolve({ username: 'JOEY SHEN', location: 'ZHA' });
       }, 500);
