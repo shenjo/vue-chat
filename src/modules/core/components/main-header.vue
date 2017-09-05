@@ -8,8 +8,8 @@
                     <el-button type="primary" @click="userLogout">logout</el-button>
                 </div>
                 <div v-else>
-                    <el-button>register</el-button>
-                    <el-button>login</el-button>
+                    <router-link to="/signup"><el-button>register</el-button></router-link>
+                    <router-link to="/login"><el-button>login</el-button></router-link>
                 </div>
             </el-col>
         </el-row>

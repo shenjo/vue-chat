@@ -2,6 +2,7 @@
  * Created by SHENJO on 8/25/2017.
  */
 import * as types from './mutation-types'
+import axios from 'axios'
 
 import authCtrl from '../apis/auth.client.api'
 export default {
@@ -14,7 +15,7 @@ export default {
   },
   [types.USERLOGIN] ({ commit }) {
     return new Promise((resolve, reject) => {
-      setTimeout(function () {
+      setTimeout(() => {
         commit(types.LOGIN, {});
         authCtrl.setCookie('session', 'asdasdasd');
         resolve({ username: 'JOEY SHEN', location: 'ZHA' });
@@ -24,6 +25,15 @@ export default {
   [types.USERLOGOUT] ({ commit }) {
     authCtrl.delCookie('session');
     commit(types.LOGOUT);
+  },
+  [types.USERSIGNUP] ({ commit }, userObj) {
+    console.log(userObj);
+    axios.post('/api/auth/signup', userObj)
+      .then((res) => {
+        commit(types.LOGIN, res.data);
+      }).catch(err => {
+        console.log(err);
+      })
   }
 }
 
