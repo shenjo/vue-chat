@@ -1,2 +1,4 @@
 # vue-chat
-simple chat/blog module includes
+npm run dev to start client
+
+npm run start to start server
