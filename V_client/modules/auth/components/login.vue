@@ -2,6 +2,7 @@
     <div class="login_container">
         <!--<NavHeader></NavHeader>-->
         <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="100px" class="demo-ruleForm">
+            <h1>Login</h1>
             <el-form-item label="username" prop="username">
                 <el-input type="text" v-model="loginForm.username" auto-complete="off"></el-input>
             </el-form-item>
@@ -63,9 +64,19 @@
               this.$router.push('/');
             }).catch(err => {
               console.log(err);
+              this.$notify.error({
+                title: 'Something wrong',
+                message: err.response.data.message,
+                offset: 100,
+                duration:2500
+              });
             });
           } else {
-            console.log('error submit!!');
+            this.$notify.warning({
+              message: 'Invalid input',
+              offset: 100,
+              duration:2500
+            });
             return false;
           }
         });

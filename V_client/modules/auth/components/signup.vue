@@ -2,6 +2,7 @@
     <div class="login_container">
         <!--<NavHeader></NavHeader>-->
         <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="100px" class="demo-ruleForm">
+            <h1>Register</h1>
             <el-form-item label="username" prop="username">
                 <el-input type="text" v-model="loginForm.username" auto-complete="off"></el-input>
             </el-form-item>
