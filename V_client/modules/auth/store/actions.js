@@ -22,12 +22,7 @@ export default {
     axios.get('/api/auth/logout');
   },
   [types.USERSIGNUP] ({ commit }, userObj) {
-    axios.post('/api/auth/signup', userObj)
-      .then((res) => {
-        commit(types.LOGIN, res.data);
-      }).catch(err => {
-        console.log(err);
-      })
+    return axios.post('/api/auth/signup', userObj)
   }
 }
 

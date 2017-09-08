@@ -1,21 +1,16 @@
 <template>
     <div>
         <nav-header></nav-header>
-        <el-row type="flex" class="row-bg">
+        <el-row type="flex" class="row-bg main_content">
             <el-col :span="4" v-if="isAuthed">
                 <div v-show="leftNavShow">
-                    <el-menu default-active="2" class="el-menu-vertical-demo">
-                        <el-submenu index="1">
-                            <template slot="title"><i class="el-icon-message"></i>导航一</template>
-                            <el-menu-item-group>
-                                <el-menu-item index="1-1">选项1</el-menu-item>
-                                <el-menu-item index="1-2">选项2</el-menu-item>
-                            </el-menu-item-group>
+                    <el-menu mode="vertical" default-active="1" class="el-menu-vertical-demo meun">
+                        <router-link to="/" tag="li"><el-menu-item index="1"><i class="el-icon-message"></i>homepage</el-menu-item></router-link>
+                        <el-submenu index="2">
+                            <template slot="title"><i class="el-icon-message"></i>Blogs</template>
+                            <router-link to="/faq" tag="li"><el-menu-item index="2-1">list</el-menu-item></router-link>
+                            <router-link to="/todo" tag="li"><el-menu-item index="2-2">post</el-menu-item></router-link>
                         </el-submenu>
-                        <el-menu-item index="2"><i class="el-icon-menu"></i>导航二</el-menu-item>
-                        <el-menu-item index="3"><i class="el-icon-setting"></i>
-                            <router-link to="/">Home</router-link>
-                        </el-menu-item>
                     </el-menu>
                 </div>
             </el-col>
@@ -29,6 +24,7 @@
 
 <script>
   import NavHeader from './main-header'
+  import '../css/core.css'
   export default {
     components: { NavHeader },
     computed: {

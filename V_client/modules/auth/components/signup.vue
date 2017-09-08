@@ -60,6 +60,22 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             this.$store.dispatch(types.USERSIGNUP, this.loginForm)
+              .then((res) => {
+                this.$store.commit(types.LOGIN, res.data);
+                this.$notify.success({
+                  message: 'Register success',
+                  offset: 100,
+                  duration: 2500
+                });
+                this.$router.push('/')
+              }).catch(err => {
+              this.$notify.error({
+                title: 'Something wrong',
+                message: err.response.data.message,
+                offset: 100,
+                duration: 2500
+              });
+            })
           }
         });
       },
