@@ -6,5 +6,8 @@ import * as types from './mutation-types'
 export default {
   [types.INCREMENT] ({ commit }) {
     commit(types.INCREMENT)
+  },
+  [types.SOCKET_USER_MESSAGE]({commit},message){
+
   }
 }

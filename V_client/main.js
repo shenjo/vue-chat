@@ -9,6 +9,7 @@ import './modules/index'
 import * as filters from './filter'
 import 'element-ui/lib/theme-default/index.css'
 import './theme.css'
+import VueSocketio from 'vue-socket.io'
 
 import App from './App'
 Vue.config.productionTip = false;
@@ -17,10 +18,22 @@ _.each(filters, (filter) => {
   Vue.filter(filter, filters[filter])
 });
 /* eslint-disable no-new */
+Vue.use(VueSocketio, 'http://localhost:3000');
 new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  sockets:{
+    connect: function(){
+    },
+    online: function(val){
+      this.$notify.success({
+        message: val+' online.',
+        offset: 100,
+        duration:2500
+      });
+    }
+  }
 });

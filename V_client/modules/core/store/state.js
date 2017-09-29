@@ -4,5 +4,7 @@
 export default {
   showLeftNav: true,
   count: 0,
-  todos: []
+  todos: [],
+  connect: false,
+  message: null
 }

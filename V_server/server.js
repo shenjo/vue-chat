@@ -16,6 +16,24 @@ const express = require('express'),
 let db = require('./mongoose').db;
 
 let app = express();
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
+
+
+io.on('connection', (socket) => {
+
+
+  // 群聊
+  socket.on('sendGroupMsg', function (data) {
+    socket.broadcast.emit('receiveGroupMsg', data);
+  });
+
+  // 上线
+  socket.on('login', name => {
+    socket.emit('online', name)
+  });
+
+});
 // const compiler = webpack(config);
 // app.use(webpackDevMiddleware(compiler, {
 //   publicPath: config.output.publicPath,
@@ -48,7 +66,8 @@ app.use(session({
 require('./passport.config')(app);
 route(app);
 
-app.listen(3000, () => {
+
+http.listen(3000, () => {
   console.log('server running....');
 
 });

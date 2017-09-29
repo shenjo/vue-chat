@@ -8,5 +8,8 @@ export default {
     // 变更状态
     console.log('shenjo......');
     state.count++;
+  },
+  [types.SOCKET_CONNECT](state,message){
+    state.message = message;
   }
 }

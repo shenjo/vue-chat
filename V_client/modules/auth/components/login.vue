@@ -55,6 +55,16 @@
         }
       };
     },
+    sockets:{
+      online: function(val){
+        console.log(val);
+        this.$notify.success({
+          message: val+' online.',
+          offset: 100,
+          duration:2500
+        });
+      }
+    },
     methods: {
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {
@@ -62,6 +72,7 @@
             this.$store.dispatch(types.USERLOGIN, this.loginForm).then((res) => {
               this.$store.commit(types.LOGIN, res.data);
               this.$router.push('/');
+              this.$socket.emit('login',res.data.username);
             }).catch(err => {
               console.log(err);
               this.$notify.error({
