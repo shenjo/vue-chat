@@ -8,6 +8,7 @@ import store from './store'
 import './modules/index'
 import * as filters from './filter'
 import 'element-ui/lib/theme-default/index.css'
+import './theme.css'
 
 import App from './App'
 Vue.config.productionTip = false;

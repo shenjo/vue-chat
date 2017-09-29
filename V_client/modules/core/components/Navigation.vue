@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="wholeContainer">
         <nav-header></nav-header>
-        <el-row type="flex" class="row-bg main_content">
+        <el-row type="flex" class="row-bg main_content wholeContainer">
             <el-col :span="4" v-if="isAuthed">
-                <div v-show="leftNavShow">
+                <div v-show="leftNavShow" class="menu_background_color wholeContainer">
                     <el-menu mode="vertical" default-active="1" class="el-menu-vertical-demo meun">
                         <router-link to="/" tag="li"><el-menu-item index="1"><i class="el-icon-message"></i>homepage</el-menu-item></router-link>
                         <el-submenu index="2">
